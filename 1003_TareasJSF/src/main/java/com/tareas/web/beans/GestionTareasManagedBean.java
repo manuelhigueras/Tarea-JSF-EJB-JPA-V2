@@ -1,20 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tareas.web.beans;
 
 import com.sun.faces.util.MessageFactory;
 import com.tareas.dominio.Estados;
 import com.tareas.dominio.Tarea;
+import com.tareas.dominio.TareaJPA;
 import com.tareas.excepciones.EstadoTareaException;
-import com.tareas.servicios.TareasService;
+import com.tareas.servicios.CalculadoraSessionBeanLocal;
 import com.tareas.servicios.TareasServiceInterface;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -32,10 +31,25 @@ public class GestionTareasManagedBean {
     private Collection<Tarea> coleccionTareas;
     private Tarea tareaSel;
    
-    private TareasServiceInterface  tareasService = new TareasService(); 
-            
-    public GestionTareasManagedBean() {
-       refrescarListasTareas();
+    @EJB 
+    private TareasServiceInterface  tareasService;// = new TareasService(); 
+         
+    @EJB
+    private CalculadoraSessionBeanLocal calculadoraService;
+    
+    
+    public GestionTareasManagedBean() {}
+    
+    @PostConstruct
+    public void iniciarlicarMB(){
+        System.out.println(".... suma 3 + 9 " 
+                + calculadoraService.suma(3, 9));
+        
+        System.out.println("... busco Tarea con id 1 ");
+        TareaJPA t = tareasService.getTareaJPA(1);
+        System.out.println(".... Tarea es " + t.getDescripcion());
+        
+        refrescarListasTareas();
     }
     
     private void refrescarListasTareas(){

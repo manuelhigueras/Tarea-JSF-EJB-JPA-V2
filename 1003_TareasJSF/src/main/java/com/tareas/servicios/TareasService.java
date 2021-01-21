@@ -4,14 +4,34 @@ import com.db.DB;
 
 import com.tareas.dominio.Estados;
 import com.tareas.dominio.Tarea;
+import com.tareas.dominio.TareaJPA;
 import com.tareas.excepciones.EstadoTareaException;
 import com.tareas.excepciones.TareaException;
 import java.sql.*;
 import java.util.List;
-
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+// EJB DE SESION SIN ESTADO
+@Stateless
 public class TareasService implements TareasServiceInterface {
+
+    //inyecta un nuevo EntityManager que se contruye a partir
+    // de los datos del persistence.xml
+    @PersistenceContext(unitName = "tareasPU")
+    private EntityManager em; 
     
-   
+    public TareasService() {
+        System.out.println(".... constructor TareasService");
+    }
+    
+    @PostConstruct
+    public void inicar(){
+        System.out.println(".... en el postconstruct");
+    }
+    
+    
     @Override
     public List<Tarea> getListaTareasPorEstado(Estados estado) 
             throws SQLException, EstadoTareaException {     
@@ -65,5 +85,16 @@ public class TareasService implements TareasServiceInterface {
         return e;
     }
 
+    @Override
+    public TareaJPA getTareaJPA(Integer id) {
+        //select * from tareas where idTarea = id
+        TareaJPA t = new TareaJPA(1, "adfasf", Estados.DONE.getValor(), Boolean.TRUE) ;
+        //em.find(TareaJPA.class, id);// 
+        
+        return t;
+    }
+
+   
+    
    
 }
