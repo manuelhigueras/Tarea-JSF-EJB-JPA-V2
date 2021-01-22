@@ -19,7 +19,7 @@ public class TareasService implements TareasServiceInterface {
 
     //inyecta un nuevo EntityManager que se contruye a partir
     // de los datos del persistence.xml
-    @PersistenceContext(unitName = "tareasPU")
+    @PersistenceContext(unitName = "TareasPU")
     private EntityManager em; 
     
     public TareasService() {
@@ -88,8 +88,8 @@ public class TareasService implements TareasServiceInterface {
     @Override
     public TareaJPA getTareaJPA(Integer id) {
         //select * from tareas where idTarea = id
-        TareaJPA t = new TareaJPA(1, "adfasf", Estados.DONE.getValor(), Boolean.TRUE) ;
-        //em.find(TareaJPA.class, id);// 
+//        TareaJPA t = new TareaJPA(1, "adfasf", Estados.DONE.getValor(), Boolean.TRUE) ;
+        TareaJPA t = em.find(TareaJPA.class, id);// 
         
         return t;
     }
