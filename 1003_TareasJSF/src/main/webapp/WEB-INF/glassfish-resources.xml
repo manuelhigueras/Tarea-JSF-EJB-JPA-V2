@@ -7,7 +7,7 @@
         <property name="databaseName" value="TareasDB2"/>
         <property name="User" value="app"/>
         <property name="Password" value="app"/>
-        <property name="URL" value="jdbc:derby://localhost:1527/TareasDB"/>
+        <property name="URL" value="jdbc:derby://localhost:1527/TareasDB2"/>
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/jdbc/tareasDB" object-type="user" pool-name="derby_net_TareasDB_Pool"/>

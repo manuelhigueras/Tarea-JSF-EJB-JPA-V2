@@ -88,9 +88,7 @@ public class TareasService implements TareasServiceInterface {
     @Override
     public TareaJPA getTareaJPA(Integer id) {
         //select * from tareas where idTarea = id
-//        TareaJPA t = new TareaJPA(1, "adfasf", Estados.DONE.getValor(), Boolean.TRUE) ;
         TareaJPA t = em.find(TareaJPA.class, id);// 
-        
         return t;
     }
 

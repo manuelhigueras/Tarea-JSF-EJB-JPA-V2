@@ -10,16 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
 @Table(name = "TAREAS")
-@NamedQueries({
-    @NamedQuery(name = "TareaJPA.findAll", query = "SELECT t FROM TareaJPA t"),
-    @NamedQuery(name = "TareaJPA.findByIdTarea", query = "SELECT t FROM TareaJPA t WHERE t.idTarea = :idTarea"),
-    @NamedQuery(name = "TareaJPA.findByDescripcion", query = "SELECT t FROM TareaJPA t WHERE t.descripcion = :descripcion"),
-    @NamedQuery(name = "TareaJPA.findByEstado", query = "SELECT t FROM TareaJPA t WHERE t.estado = :estado"),
-    @NamedQuery(name = "TareaJPA.findByArchivado", query = "SELECT t FROM TareaJPA t WHERE t.archivado = :archivado")})
+//@NamedQueries({
+//    @NamedQuery(name = "TareaJPA.findAll", query = "SELECT t FROM TareaJPA t"),
+//    @NamedQuery(name = "TareaJPA.findByIdTarea", query = "SELECT t FROM TareaJPA t WHERE t.idTarea = :idTarea"),
+//    @NamedQuery(name = "TareaJPA.findByDescripcion", query = "SELECT t FROM TareaJPA t WHERE t.descripcion = :descripcion"),
+//    @NamedQuery(name = "TareaJPA.findByEstado", query = "SELECT t FROM TareaJPA t WHERE t.estado = :estado"),
+//    @NamedQuery(name = "TareaJPA.findByArchivado", query = "SELECT t FROM TareaJPA t WHERE t.archivado = :archivado")})
 public class TareaJPA implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,7 +35,8 @@ public class TareaJPA implements Serializable {
     @Column(name = "ESTADO")
     private String estado;
 
-    @Column(name = "ARCHIVADO")
+   // @Column(name = "ARCHIVADO")
+    @Transient // no va a la tabla es solo para el codigo
     private Boolean archivado;
 
     public TareaJPA() {
