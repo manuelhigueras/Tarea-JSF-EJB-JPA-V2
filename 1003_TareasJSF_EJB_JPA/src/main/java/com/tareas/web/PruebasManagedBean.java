@@ -2,7 +2,11 @@
 package com.tareas.web;
 
 import com.tareas.entidades.Usuario;
+import com.tareas.excepciones.UsuarioNotFoundException;
+import com.tareas.excepciones.UsuarioUpdateException;
 import com.tareas.servicios.UsuarioServiceLocal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -29,7 +33,19 @@ public class PruebasManagedBean {
     
     //action 
     public void mostarUsuario(int i){
-        this.usuarioEncontrado = usuarioService.getUsuario(i);
+        try {
+            this.usuarioEncontrado = usuarioService.getUsuario(i);
+            
+            this.usuarioEncontrado.setNombre("Begoña lo cambio");
+            this.usuarioService.modificar(usuarioEncontrado);
+        } catch (UsuarioNotFoundException ex) {
+            Logger.getLogger(PruebasManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UsuarioUpdateException ex) {
+            Logger.getLogger(PruebasManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
+    
+    
     
 }

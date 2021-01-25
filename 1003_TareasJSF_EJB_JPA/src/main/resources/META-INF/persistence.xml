@@ -5,7 +5,7 @@
     <class>com.tareas.entidades.Usuario</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
-      <property name="eclipselink.logging.level" value="INFO"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
     </properties>
   </persistence-unit>
 </persistence>
