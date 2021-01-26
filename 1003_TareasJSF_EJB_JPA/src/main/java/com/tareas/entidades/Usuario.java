@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author begonaolea
+ * @author ususario
  */
 @Entity
 @Table(name = "USUARIOS")
@@ -50,6 +50,10 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "PASSWORD")
     private String password;
+    
+    // MAPPEDBY indica el atributo de la clase Tarea
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+//    private Collection<Tarea> tareaCollection;
 
     public Usuario() {
     }
@@ -96,6 +100,14 @@ public class Usuario implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+//    public Collection<Tarea> getTareaCollection() {
+//        return tareaCollection;
+//    }
+//
+//    public void setTareaCollection(Collection<Tarea> tareaCollection) {
+//        this.tareaCollection = tareaCollection;
+//    }
 
     @Override
     public int hashCode() {

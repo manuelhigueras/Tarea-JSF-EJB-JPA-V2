@@ -10,5 +10,13 @@
             <from-outcome>usuarios</from-outcome>
             <to-view-id>/lista-usuarios.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>usuario</from-outcome>
+            <to-view-id>/detalle-usuario.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tareas</from-outcome>
+            <to-view-id>/lista-tareas.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>

@@ -3,6 +3,7 @@
   <persistence-unit name="TareasPU" transaction-type="JTA">
     <jta-data-source>java:app/jdbc/tareaDBNuevo</jta-data-source>
     <class>com.tareas.entidades.Usuario</class>
+    <class>com.tareas.entidades.Tarea</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
