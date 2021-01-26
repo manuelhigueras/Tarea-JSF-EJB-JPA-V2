@@ -3,23 +3,24 @@ package com.tareas.web;
 
 import com.tareas.entidades.Usuario;
 import com.tareas.excepciones.UsuarioNotFoundException;
+import com.tareas.excepciones.UsuarioUpdateException;
 import com.tareas.servicios.UsuarioServiceLocal;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-
-
+import javax.faces.view.ViewScoped;
 
 @Named(value = "gestionUsuariosMB")
-@RequestScoped
-public class GestionUsuariosManagedBean {
+@ViewScoped
+public class GestionUsuariosManagedBean implements Serializable {
 
     private Collection<Usuario> coleccionUsuarios;
     private Usuario usuarioEncontrado;
@@ -30,6 +31,7 @@ public class GestionUsuariosManagedBean {
     @EJB private UsuarioServiceLocal usuarioService;
     
     public GestionUsuariosManagedBean() {
+        System.out.println(".... instanciando GsetionUsuarioNB");
     }
     
     @PostConstruct
@@ -55,6 +57,7 @@ public class GestionUsuariosManagedBean {
 
     //acciones
     public String buscarUsuario(String email){
+        System.out.println("... buscar " + email);
        return buscarPorMail(email);
     }
     
@@ -65,7 +68,7 @@ public class GestionUsuariosManagedBean {
     private String buscarPorMail(String email){
         try {
             this.usuarioEncontrado = usuarioService.getUsuarioByEmail(email);
-            return "detalle-usuario";
+            return null;
         } catch (UsuarioNotFoundException ex) {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage(null, new FacesMessage(ex.getMessage()));
@@ -83,6 +86,22 @@ public class GestionUsuariosManagedBean {
         }
         return null;
         
+    }
+    
+    public String modificar(){
+        System.out.println(" ha modificar " + this.usuarioEncontrado.getNombre());
+        FacesContext fc = FacesContext.getCurrentInstance();
+        try {           
+            this.usuarioService.modificar(usuarioEncontrado);
+            this.inicializar();
+            return null;
+        } catch (UsuarioNotFoundException | UsuarioUpdateException ex) {
+             fc.addMessage(null, new FacesMessage("No se pudo modificar. " + ex.getMessage()));        
+        }catch(Exception e){
+              fc.addMessage(null, new FacesMessage("Error no controlado. " + e.getMessage())); 
+              e.printStackTrace();
+        }
+        return null;
     }
     
 }

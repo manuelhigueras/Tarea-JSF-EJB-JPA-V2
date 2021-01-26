@@ -70,16 +70,12 @@ public class UsuarioService implements UsuarioServiceLocal {
     
      public void modificar(Usuario usr) throws UsuarioNotFoundException, UsuarioUpdateException{
          
-           System.out.println("... buco por id ");
            Usuario usrBD = this.getUsuario(usr.getIdUsuario());  // em.find
-           System.out.println("... el usaurio de bd tiene nombre " + usrBD.getNombre());
-           System.out.println("lo cambio por el que recibo que es " + usr.getNombre());
 //           usrBD.setEmail(usr.getEmail());
 //           usrBD.setNombre(usr.getNombre());
 //           usrBD.setPassword(usr.getPassword());
-System.out.println("mege");
            em.merge(usr);
-           System.out.println("... commit");
+
           //los métodos de un EJB HACE COMMIT AL FINA SI NO HAY EXCEPCIONES
          // COMMIT  -> se sincronice los objetos de em con las tablas de la bd
      }
