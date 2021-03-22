@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lista Usuarios</title>
+    </h:head>
+    <h:body>
+        <h2>Lista usuarios</h2>
+        <h:form>
+            <h:dataTable var="usuario" value="#{gestionUsuariosMB.coleccion}"> 
+                <h:column>
+                    <f:facet name="header">
+                        Id
+                    </f:facet>
+                    #{ usuario.idUsuario }
+                    <f:facet name="header">
+                        Email
+                    </f:facet>
+                    #{ usuario.email }
+                    <f:facet name="header">
+                        Nombre
+                    </f:facet>
+                    #{ usuario.nombre }
+                    <h:column>
+                        <h:commandButton value="ver detalle" action="#{gestionUsuariosMB.buscarUsuarioPorEmailEntrada(usuario.email)}"/>
+                        <h:commandButton value="modificar" action="modificar-usuario"/>
+                    </h:column>                  
+                </h:column>               
+            </h:dataTable>
+                <div>
+                    <label>Introduce un email a buscar </label>
+                    <h:inputText value="#{gestionUsuariosMB.emailABuscar}"/>
+                    <h:commandButton value="Buscar" action="#{gestionUsuariosMB.buscarUsuario()}"/>  
+                </div>
+                 <div>
+                    <label>Introduce un id a eliminar </label>
+                    <h:inputText value="#{gestionUsuariosMB.idInsertado}"/>
+                    <h:commandButton value="Borrar" action="#{gestionUsuariosMB.eliminarPorId()}"/>                  
+                </div>     
+            <div>
+                <h:form>
+                    <label>Introduce un email a modificar </label>
+                    <h:inputText value="#{gestionUsuariosMB.usNuevo.email}"/>
+                    <br/>
+                    <label>Introduce un password a modificar </label>
+                    <h:inputText value="#{gestionUsuariosMB.usNuevo.password}"/>
+                    <br/>
+                    <label>Introduce un nombre a modificar </label>
+                    <h:inputText value="#{gestionUsuariosMB.usNuevo.nombre}"/>          
+                    <br/>
+                    <h:commandButton value="Modificar" action="#{gestionUsuariosMB}"/>  
+                    <h:commandButton value="Lista" action="lista-usuarios" immediate="true"/>
+                </h:form>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div>
+            <h:form>
+                <label>Introduce un email a modificar </label>
+                <h:inputText value="#{gestionUsuariosMB.usNuevo.email}"/>
+                <br/>
+                <label>Introduce un password a modificar </label>
+                <h:inputText value="#{gestionUsuariosMB.usNuevo.password}"/>
+                <br/>
+                <label>Introduce un nombre a modificar </label>
+                <h:inputText value="#{gestionUsuariosMB.usNuevo.nombre}"/>          
+                <br/>
+                <h:commandButton value="Modificar" action="#{gestionUsuariosMB}"/>  
+                <h:commandButton value="Lista" action="lista-usuarios" immediate="true"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
